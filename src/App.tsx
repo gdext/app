@@ -2,8 +2,8 @@ import './App.scss';
 
 const App = () => {
     return (
-        <div>
-            <h1>Hello World</h1>
+        <div id="app">
+            <span>Greetings!</span>
         </div>
     );
 };

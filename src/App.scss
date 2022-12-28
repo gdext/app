@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import "./styles/variables.scss";
+@import "./styles/mixins.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Manrope', sans-serif;
+}
+
+body {
+    @include font(16px, 500, $colorTextRegular);
+    background-color: $colorBgDeep;
+    height: 100%;
+}
