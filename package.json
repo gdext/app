@@ -27,6 +27,8 @@
     "vite": "^4.0.3"
   },
   "dependencies": {
+    "@iconify-icons/tabler": "^1.2.55",
+    "@iconify/react": "^4.0.1",
     "ahooks": "^3.7.4",
     "classnames": "^2.3.2",
     "gdrweb-react": "^0.0.2",
