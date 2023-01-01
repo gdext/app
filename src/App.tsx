@@ -2,6 +2,9 @@ import { useState, useRef } from 'react';
 import { useSize } from 'ahooks';
 import { GDRWebCanvas } from 'gdrweb-react';
 
+import menuBar from '@/configs/menuBar';
+
+import MenuBar from './components/MenuBar';
 import OptionsMenu from './components/OptionsMenu';
 import { MenuList, MenuOption } from './components/OptionsMenu/components/Option';
 
@@ -34,6 +37,9 @@ const App = () => {
 
     return (
         <div id="app">
+            <MenuBar 
+                items={menuBar}
+            />
             <div className='canvasWrapper' ref={canvasWrapperRef}>
                 <GDRWebCanvas
                     levelString={levelString}
@@ -46,7 +52,7 @@ const App = () => {
                     }}
                 />
             </div>
-            <div style={{ position: 'absolute', top: 200, left: 200, zIndex: 1000 }}>
+            <div style={{ position: 'absolute', top: 800, left: 200, zIndex: 1000 }}>
                 <OptionsMenu
                     title="Test"
                     options={testMenu}

@@ -44,6 +44,9 @@
     &:hover, &.active {
         background: $colorSecondary;
         color: $colorTextAction;
+        .shortcut {
+            opacity: 1;
+        }
     }
 
     .optionLeft, .optionRight {

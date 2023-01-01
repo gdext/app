@@ -1,0 +1,47 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.bar {
+    @include flex(row, space-between, center);
+    height: 30px;
+    width: 100%;
+    padding: 0 16px;
+    position: relative;
+
+    .barLeft, .barRight {
+        @include flex(row, flex-start, center, 10px);
+        color: $colorTextAction;
+    }
+
+    .barRight {
+        span {
+            @include font(12px, 500, $colorTextHint);
+        }
+    }
+
+    .menuWrapper {
+        position: absolute;
+        top: 35px;
+        z-index: 10;
+    }
+
+    &.active {
+        .barItem:hover {
+            background: none;
+        }
+    }
+}
+
+.barItem {
+    @include clickable;
+    @include font(14px, 500);
+    padding: 2px 10px;
+    border-radius: 4px;
+
+    &:hover {
+        background: $colorSecondary;
+    }
+    &.active {
+        background: $colorBgSub !important;
+    }
+}
