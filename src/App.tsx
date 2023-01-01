@@ -3,26 +3,27 @@ import { useSize } from 'ahooks';
 import { GDRWebCanvas } from 'gdrweb-react';
 
 import OptionsMenu from './components/OptionsMenu';
-import { MenuOption } from './components/OptionsMenu/components/Option';
+import { MenuList, MenuOption } from './components/OptionsMenu/components/Option';
 
 import './App.scss';
 
-let testMenu: MenuOption[] = [
+let testMenu: MenuList = [
     { label: 'Test 1', icon: 'newFile', suboptions: [
-        { label: 'Test 1.1' },
+        { label: 'Test 1.1', shortcut: 'Ctrl + Shift + S' },
         { label: 'Test 1.2' },
         { label: 'Test 1.3' },
         { label: 'Recursion', suboptions: [] },
     ] },
-    { label: 'Test 2', icon: 'save' },
-    { label: 'Test 3', icon: 'open' },
+    { label: 'Test 2', icon: 'save', shortcut: 'Ctrl + S' },
+    { label: 'Test 3', icon: 'open', shortcut: 'Ctrl + O' },
+    { divider: true },
     { label: 'Test 4', suboptions: [
         { label: 'Test 4.1', icon: 'arrowRight' },
         { label: 'Test 4.2', icon: 'arrowRight' },
         { label: 'Test 4.3', icon: 'arrowRight' },
     ] },
 ];
-testMenu![0].suboptions![3].suboptions! = testMenu;
+((testMenu![0] as MenuOption).suboptions![3] as MenuOption).suboptions! = testMenu;
 
 const App = () => {
 

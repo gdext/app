@@ -1,4 +1,4 @@
-import Option, { MenuOption } from "./Option";
+import Option, { MenuOption, MenuDivider, MenuList } from "./Option";
 
-export type { MenuOption };
+export type { MenuOption, MenuDivider, MenuList };
 export default Option;

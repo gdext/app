@@ -11,11 +11,18 @@ const SUBMENU_TRIGGER_DELAY = 500;
 export type MenuOption = {
     label: string;
     icon?: string;
+    shortcut?: string;
     action?: string;
     payload?: any;
     onClick?: () => void;
-    suboptions?: MenuOption[];
+    suboptions?: MenuList;
 }
+
+export type MenuDivider = {
+    divider: true;
+}
+
+export type MenuList = (MenuOption|MenuDivider)[];
 
 type OptionProps = MenuOption & {
     onSubmenuOpen?: (isSubmenu: boolean, offsetY: number) => void;
@@ -25,7 +32,7 @@ type OptionProps = MenuOption & {
 }
 
 const Option = ({ 
-    label, icon, 
+    label, icon, shortcut,
     action, payload, onClick, 
     onSubmenuOpen, onSubmenuClose,
     suboptions, parentActive, active
@@ -93,12 +100,16 @@ const Option = ({
             ref={ref}
             onClick={handleClick}
             onMouseEnter={delaySubmenuOpen}
+            onMouseLeave={() => setSubmenuOpen(false)}
         >
             <div className={classes.optionLeft}>
                 {icon && <Icon icon={icons[icon]} />}
                 <span>{label}</span>
             </div>
-            {suboptions && <Icon icon={icons.arrowRight} />}
+            <div className={classes.optionRight}>
+                { shortcut && <div className={classes.shortcut}>{shortcut}</div> }
+                { suboptions && <Icon icon={icons.arrowRight} /> }
+            </div>
         </div>
     );
 

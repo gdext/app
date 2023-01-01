@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import cn from 'classnames';
 
-import Option, { MenuOption } from './components/Option';
+import Option, { MenuOption, MenuDivider, MenuList } from './components/Option';
 
 import classes from './OptionsMenu.module.scss';
 
@@ -10,7 +10,7 @@ const SUBMENU_Y_SHIFT = 8;
 
 type OptionsMenuProps = {
     title?: string;
-    options: MenuOption[];
+    options: MenuList;
     translucent?: boolean;
 }
 
@@ -33,21 +33,30 @@ const OptionsMenu = ({
 
             {/** Menu Options */}
             <div className={classes.options}>
-                {options.map((option, index) => (
-                    <Option
-                        key={option.label}
-                        {...option}
-                        onSubmenuOpen={(isSubmenu: boolean, offsetY: number) => {
-                            setOpenSubmenu(isSubmenu ? index : -1);
-                            setSubmenuY(offsetY);
-                        }}
-                        onSubmenuClose={() => {
-                            setOpenSubmenu(-1);
-                        }}
-                        parentActive={submenuActive}
-                        active={openSubmenu === index}
-                    />
-                ))}
+                {options.map((option, index) => {
+
+                    const optionDivider = option as MenuDivider;
+                    const optionNormal  = option as MenuOption;
+
+                    if (optionDivider.divider)
+                        return <div key={index} className={classes.optionDivider} />;
+
+                    return (
+                        <Option
+                            key={optionNormal.label}
+                            {...optionNormal}
+                            onSubmenuOpen={(isSubmenu: boolean, offsetY: number) => {
+                                setOpenSubmenu(isSubmenu ? index : -1);
+                                setSubmenuY(offsetY);
+                            }}
+                            onSubmenuClose={() => {
+                                setOpenSubmenu(-1);
+                            }}
+                            parentActive={submenuActive}
+                            active={openSubmenu === index}
+                        />
+                    )
+                })}
             </div>
 
             {/** Submenu flyout, if present */}
@@ -57,7 +66,7 @@ const OptionsMenu = ({
                     style={{ top: submenuY - SUBMENU_Y_SHIFT }}
                 >
                     <OptionsMenu
-                        options={options[openSubmenu]?.suboptions ?? []}
+                        options={(options as MenuOption[])[openSubmenu]?.suboptions ?? []}
                         translucent={translucent}
                     />
                 </div>
