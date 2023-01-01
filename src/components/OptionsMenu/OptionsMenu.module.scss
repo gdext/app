@@ -41,7 +41,7 @@
         margin-left: 40px;
     }
 
-    &:hover {
+    &:hover, &.active {
         background: $colorSecondary;
         color: $colorTextAction;
     }

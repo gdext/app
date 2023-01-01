@@ -7,7 +7,7 @@ import { MenuList, MenuOption } from './components/OptionsMenu/components/Option
 
 import './App.scss';
 
-let testMenu: MenuList = [
+const testMenu: MenuList = [
     { label: 'Test 1', icon: 'newFile', suboptions: [
         { label: 'Test 1.1', shortcut: 'Ctrl + Shift + S' },
         { label: 'Test 1.2' },

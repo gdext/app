@@ -1,5 +1,6 @@
 import { useState, useRef, MouseEvent } from 'react';
 import { useTimeout } from 'ahooks';
+import cn from 'classnames';
 
 import icons, { Icon } from '@/utils/icons';
 
@@ -96,7 +97,9 @@ const Option = ({
 
     return (
         <div 
-            className={classes.option}
+            className={cn(classes.option, {
+                [classes.active]: active
+            })}
             ref={ref}
             onClick={handleClick}
             onMouseEnter={delaySubmenuOpen}
