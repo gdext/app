@@ -37,7 +37,7 @@
 
     .shortcut {
         @include font(12px, 500, $colorTextRegular);
-        opacity: 0.25;
+        opacity: 0.35;
         margin-left: 40px;
     }
 
@@ -58,7 +58,7 @@
 .optionDivider {
     width: 100%;
     height: 4px;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #ffffff1a;
 }
 
 .submenuWrapper {
