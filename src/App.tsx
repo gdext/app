@@ -2,7 +2,27 @@ import { useState, useRef } from 'react';
 import { useSize } from 'ahooks';
 import { GDRWebCanvas } from 'gdrweb-react';
 
+import OptionsMenu from './components/OptionsMenu';
+import { MenuOption } from './components/OptionsMenu/components/Option';
+
 import './App.scss';
+
+let testMenu: MenuOption[] = [
+    { label: 'Test 1', icon: 'newFile', suboptions: [
+        { label: 'Test 1.1' },
+        { label: 'Test 1.2' },
+        { label: 'Test 1.3' },
+        { label: 'Recursion', suboptions: [] },
+    ] },
+    { label: 'Test 2', icon: 'save' },
+    { label: 'Test 3', icon: 'open' },
+    { label: 'Test 4', suboptions: [
+        { label: 'Test 4.1', icon: 'arrowRight' },
+        { label: 'Test 4.2', icon: 'arrowRight' },
+        { label: 'Test 4.3', icon: 'arrowRight' },
+    ] },
+];
+testMenu![0].suboptions![3].suboptions! = testMenu;
 
 const App = () => {
 
@@ -23,6 +43,13 @@ const App = () => {
                             mouseButtons: 'middle'
                         }
                     }}
+                />
+            </div>
+            <div style={{ position: 'absolute', top: 200, left: 200, zIndex: 1000 }}>
+                <OptionsMenu
+                    title="Test"
+                    options={testMenu}
+                    translucent
                 />
             </div>
             <div>
