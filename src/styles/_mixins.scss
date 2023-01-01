@@ -1,7 +1,47 @@
 @import "variables";
 
-@mixin font ($size, $weight: 500, $color: $colorTextRegular) {
+@mixin font ($size, $weight: 500, $color: unset) {
     font-size: $size;
     font-weight: $weight;
     color: $color;
+}
+
+@mixin flex ($direction: unset, $justifyContent: unset, $alignItems: unset, $gap: unset) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+    gap: $gap;
+}
+
+@mixin box ($bgColor: $colorBgPrimary) {
+    background: $bgColor;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+@mixin smallBox {
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+
+@mixin translucent ($radius: 8px) {
+    background: none;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba($colorBgPrimary, 0.8);
+        backdrop-filter: blur(20px);
+        border-radius: $radius;
+        z-index: -1;
+    }
+}
+
+@mixin clickable {
+    cursor: pointer;
+    user-select: none;
 }

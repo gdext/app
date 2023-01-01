@@ -1,0 +1,49 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.container {
+    @include box();
+    @include flex(column, center, stretch, 4px);
+
+    position: relative;
+    min-width: 200px;
+    width: max-content;
+    user-select: none;
+
+    &.translucent {
+        @include translucent();
+    }
+
+    h4 {
+        @include font(12px, 800, $colorTextHint);
+        padding: 0 10px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+}
+
+.option {
+    @include smallBox;
+    @include flex(row, space-between, center);
+    @include clickable;
+
+    span {
+        @include font(12px, 500);
+    }
+
+    &:hover {
+        background: $colorSecondary;
+        color: $colorTextAction;
+    }
+
+    .optionLeft {
+        @include flex(row, flex-start, center);
+        gap: 8px;
+    }
+}
+
+.submenuWrapper {
+    position: absolute;
+    left: calc(100% + 5px);
+    top: 16px;
+}
