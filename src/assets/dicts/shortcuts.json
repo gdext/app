@@ -1,0 +1,9 @@
+[
+    {
+        "keys": ["ctrl", "e"],
+        "action": "export",
+        "payload": {
+            "format": "gmd2"
+        }
+    }
+]

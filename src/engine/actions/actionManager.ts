@@ -5,7 +5,7 @@ export type Action = {
 
 class ActionManager {
     
-    subscribers: Set<Function> = new Set();
+    private subscribers: Set<Function> = new Set();
 
     dispatch (action: Action) {
         console.log('action triggered:', action);

@@ -4,6 +4,8 @@ import { GDRWebCanvas } from 'gdrweb-react';
 
 import menuBar from '@/configs/menuBar';
 import { useAction } from '@/hooks/useAction';
+import { useKeyboardManager } from './hooks/useKeyboardManager';
+import { useKeyboard } from './hooks/useKeyboard';
 
 import MenuBar from '@/components/MenuBar';
 import OptionsMenu from '@/components/OptionsMenu';
@@ -37,12 +39,16 @@ const App = () => {
     const canvasWrapperRef = useRef<HTMLDivElement>(null);
     const size = useSize(canvasWrapperRef);
 
+    useKeyboardManager();
+
     const [ levelString, setLevelString ] = useState('');
 
     // test action
     useAction('export', ({ action, payload }) => {
         alert(`Action: ${action}, Payload: ${JSON.stringify(payload)}`);
     });
+
+    const keys = useKeyboard();
 
     return (
         <div id="app">
@@ -81,6 +87,12 @@ const App = () => {
                         reader.readAsText(file);
                     }
                 }} />
+            </div>
+            <div>
+                Shift is {keys.includes('shift') ? '' : 'not'} pressed <br />
+                Control is {keys.includes('ctrl') ? '' : 'not'} pressed <br />
+                Alt is {keys.includes('alt') ? '' : 'not'} pressed <br />
+                Tab is {keys.includes('tab') ? '' : 'not'} pressed <br />
             </div>
         </div>
     );
