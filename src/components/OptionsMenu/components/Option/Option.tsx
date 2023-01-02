@@ -31,6 +31,7 @@ export type MenuList = (MenuOption|MenuDivider)[];
 type OptionProps = MenuOption & {
     onSubmenuOpen?: (isSubmenu: boolean, offsetY: number) => void;
     onSubmenuClose?: () => void;
+    onSelect?: () => void;
     parentActive?: boolean;
     active?: boolean;
 }
@@ -39,7 +40,7 @@ const Option = ({
     label, icon, shortcut, 
     variation, disabled,
     action, payload, onClick, 
-    onSubmenuOpen, onSubmenuClose,
+    onSubmenuOpen, onSubmenuClose, onSelect,
     suboptions, parentActive, active
 }: OptionProps) => {
 
@@ -96,6 +97,7 @@ const Option = ({
             else triggerSubmenuOpen();
         } else {
             (onClick ?? defaultOnClick)();
+            onSelect?.();
         }
     }
 

@@ -3,11 +3,13 @@ import { useSize } from 'ahooks';
 import { GDRWebCanvas } from 'gdrweb-react';
 
 import menuBar from '@/configs/menuBar';
+import testMenu from '@/configs/testMenu';
 
 import { useAction } from '@/hooks/useAction';
 import { useKeyboardManager } from '@/hooks/useKeyboardManager';
 import { useKeyboard } from '@/hooks/useKeyboard';
 import { useModals } from '@/hooks/useModals';
+import { useContextMenu } from '@/hooks/useContextMenu';
 
 import { ModalContext } from '@/context/ModalContext';
 
@@ -37,6 +39,9 @@ const App = () => {
         alert(`Action: ${action}, Payload: ${JSON.stringify(payload)}`);
     });
 
+    // test menu
+    const contextMenu = useContextMenu(canvasWrapperRef, testMenu);
+
     return (
         <ModalContext.Provider value={{ 
             addModal, removeModal, 
@@ -59,6 +64,7 @@ const App = () => {
                             }
                         }}
                     />
+                    { contextMenu }
                 </div>
 
                 <div>

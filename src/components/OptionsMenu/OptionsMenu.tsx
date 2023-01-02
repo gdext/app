@@ -12,10 +12,11 @@ type OptionsMenuProps = {
     title?: string;
     options: MenuList;
     translucent?: boolean;
+    onSelect?: (option: MenuOption, index: number) => void;
 }
 
 const OptionsMenu = ({
-    title, options, translucent
+    title, options, translucent, onSelect
 }: OptionsMenuProps) => {
 
     const [ openSubmenu, setOpenSubmenu ] = useState(-1);
@@ -52,6 +53,7 @@ const OptionsMenu = ({
                             onSubmenuClose={() => {
                                 setOpenSubmenu(-1);
                             }}
+                            onSelect={() => onSelect?.(optionNormal, index)}
                             parentActive={submenuActive}
                             active={openSubmenu === index}
                         />
@@ -67,7 +69,7 @@ const OptionsMenu = ({
                 >
                     <OptionsMenu
                         options={(options as MenuOption[])[openSubmenu]?.suboptions ?? []}
-                        translucent={translucent}
+                        translucent={translucent} onSelect={onSelect}
                     />
                 </div>
             )}
