@@ -3,10 +3,11 @@ import { useSize } from 'ahooks';
 import { GDRWebCanvas } from 'gdrweb-react';
 
 import menuBar from '@/configs/menuBar';
+import { useAction } from '@/hooks/useAction';
 
-import MenuBar from './components/MenuBar';
-import OptionsMenu from './components/OptionsMenu';
-import { MenuList, MenuOption } from './components/OptionsMenu/components/Option';
+import MenuBar from '@/components/MenuBar';
+import OptionsMenu from '@/components/OptionsMenu';
+import { MenuList, MenuOption } from '@/components/OptionsMenu/components/Option';
 
 import './App.scss';
 
@@ -21,9 +22,12 @@ const testMenu: MenuList = [
     { label: 'Test 3', icon: 'open', shortcut: 'Ctrl + O' },
     { divider: true },
     { label: 'Test 4', suboptions: [
-        { label: 'Test 4.1', icon: 'arrowRight' },
-        { label: 'Test 4.2', icon: 'arrowRight' },
-        { label: 'Test 4.3', icon: 'arrowRight' },
+        { label: 'Test 4.1', icon: 'arrowRight', variation: 'danger' },
+        { label: 'Test 4.2', icon: 'arrowRight', variation: 'warning' },
+        { label: 'Test 4.3', icon: 'arrowRight', variation: 'success' },
+        { divider: true },
+        { label: 'Test 4.4', disabled: true, shortcut: 'Ctrl + C' },
+        { label: 'Test 4.5', disabled: true, shortcut: 'Ctrl + V' }
     ] },
 ];
 ((testMenu![0] as MenuOption).suboptions![3] as MenuOption).suboptions! = testMenu;
@@ -34,6 +38,11 @@ const App = () => {
     const size = useSize(canvasWrapperRef);
 
     const [ levelString, setLevelString ] = useState('');
+
+    // test action
+    useAction('export', ({ action, payload }) => {
+        alert(`Action: ${action}, Payload: ${JSON.stringify(payload)}`);
+    });
 
     return (
         <div id="app">
