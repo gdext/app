@@ -30,10 +30,9 @@ const MenuBar = ({
     const barRef = useRef<HTMLDivElement>(null);
 
     const isActive = () => activeItem > -1;
+    const close = () => setActiveItem(-1);
 
-    useOutsideClick(() => {
-        setActiveItem(-1);
-    }, barRef);
+    useOutsideClick(close, barRef);
 
     const calcOffsetX = (elem: EventTarget) => (elem as HTMLElement).offsetLeft ?? 0;
 
@@ -70,6 +69,7 @@ const MenuBar = ({
                         options={items[activeItem].options}
                         translucent
                         key={activeItem}
+                        onSelect={close}
                     />
                 </div>
             )}
