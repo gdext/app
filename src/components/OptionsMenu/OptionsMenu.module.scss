@@ -47,6 +47,24 @@
         .shortcut {
             opacity: 1;
         }
+
+        &.warning {
+            background: $colorWarning;
+            color: $colorTextContrast;
+        }
+        &.danger {
+            background: $colorError;
+        }
+        &.success {
+            background: $colorSuccess;
+            color: $colorTextContrast;
+        }
+    }
+
+    &.disabled {
+        opacity: 0.42;
+        pointer-events: none;
+        cursor: default;
     }
 
     .optionLeft, .optionRight {

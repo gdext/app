@@ -3,6 +3,7 @@ import { useTimeout } from 'ahooks';
 import cn from 'classnames';
 
 import icons, { Icon } from '@/utils/icons';
+import actionManager from '@/engine/actions/actionManager';
 
 import classes from '../../OptionsMenu.module.scss';
 
@@ -13,6 +14,8 @@ export type MenuOption = {
     label: string;
     icon?: string;
     shortcut?: string;
+    variation?: 'warning' | 'danger' | 'success';
+    disabled?: boolean;
     action?: string;
     payload?: any;
     onClick?: () => void;
@@ -33,7 +36,8 @@ type OptionProps = MenuOption & {
 }
 
 const Option = ({ 
-    label, icon, shortcut,
+    label, icon, shortcut, 
+    variation, disabled,
     action, payload, onClick, 
     onSubmenuOpen, onSubmenuClose,
     suboptions, parentActive, active
@@ -68,8 +72,7 @@ const Option = ({
     // handlers
 
     const defaultOnClick = () => {
-        console.log(action, payload);
-        alert(`Action: ${action} triggered`);
+        if (action) actionManager.dispatch({ action, payload });
     }
 
     const delaySubmenuOpen = () => {
@@ -86,6 +89,7 @@ const Option = ({
 
     const handleClick = (e: MouseEvent) => {
         e.stopPropagation();
+        if (disabled) return;
 
         if (isSubmenu) {
             if (active) triggerSubmenuClose();
@@ -97,8 +101,9 @@ const Option = ({
 
     return (
         <div 
-            className={cn(classes.option, {
-                [classes.active]: active
+            className={cn(classes.option, variation && classes[variation], {
+                [classes.active]: active,
+                [classes.disabled]: disabled,
             })}
             ref={ref}
             onClick={handleClick}
