@@ -69,6 +69,7 @@ const MenuBar = ({
                     <OptionsMenu
                         options={items[activeItem].options}
                         translucent
+                        key={activeItem}
                     />
                 </div>
             )}
