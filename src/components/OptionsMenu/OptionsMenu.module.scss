@@ -84,3 +84,10 @@
     left: calc(100% + 5px);
     top: 16px;
 }
+
+.xFlip {
+    .submenuWrapper {
+        left: unset;
+        right: calc(100% + 5px);
+    }
+}

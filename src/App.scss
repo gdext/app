@@ -9,9 +9,17 @@
     font-family: 'Manrope', sans-serif;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     @include font(16px, 500, $colorTextRegular);
     background-color: $colorBgDeep;
+    height: 100%;
+}
+
+#root, #app {
     height: 100%;
 }
 
