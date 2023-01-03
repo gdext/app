@@ -12,7 +12,7 @@ export const useContextMenu = (target: RefObject<HTMLElement>, menu: MenuList) =
         const contextMenuListener = (e: MouseEvent) => {
             e.preventDefault();
             setMenuActive(true);
-            setMenuPosition({ x: e.offsetX, y: e.offsetY });
+            setMenuPosition({ x: e.pageX, y: e.pageY });
         };
 
         target.current?.addEventListener('contextmenu', contextMenuListener);

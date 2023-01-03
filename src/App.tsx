@@ -21,6 +21,7 @@ import './App.scss';
 const App = () => {
 
     const canvasWrapperRef = useRef<HTMLDivElement>(null);
+    const appRef = useRef<HTMLDivElement>(null);
     const size = useSize(canvasWrapperRef);
     const [ levelString, setLevelString ] = useState('');
 
@@ -40,14 +41,14 @@ const App = () => {
     });
 
     // test menu
-    const contextMenu = useContextMenu(canvasWrapperRef, testMenu);
+    const contextMenu = useContextMenu(appRef, testMenu);
 
     return (
         <ModalContext.Provider value={{ 
             addModal, removeModal, 
             removeLastModal, clearModals 
         }}>
-            <div id="app">
+            <div id="app" ref={appRef}>
 
                 <ModalsManager modals={modals} />
 
@@ -64,8 +65,9 @@ const App = () => {
                             }
                         }}
                     />
-                    { contextMenu }
                 </div>
+
+                { contextMenu }
 
                 <div>
                     <h2>Upload the Level file:</h2>
