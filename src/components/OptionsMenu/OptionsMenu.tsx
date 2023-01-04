@@ -108,6 +108,7 @@ const OptionsMenu = ({
                     style={{ top: submenuY - SUBMENU_Y_SHIFT }}
                 >
                     <OptionsMenu
+                        key={openSubmenu}
                         options={(options as MenuOption[])[openSubmenu]?.suboptions ?? []}
                         translucent={translucent} onSelect={onSelect}
                     />
