@@ -1,0 +1,77 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+$variationsContrast: 'warning', 'success';
+$variationsNormal: 'danger', 'secondary', 'dark';
+
+$colorVariations: (
+    'warning': $colorWarning,
+    'success': $colorSuccess,
+    'danger': $colorError,
+    'secondary': $colorTertiary,
+    'dark': $colorSecondary
+);
+
+.button {
+
+    @include formElemStyleReset;
+    @include clickable;
+    @include font(14px, 500, $colorTextAction);
+    @include flex(row, center, center, 8px);
+
+    background: $colorPrimary;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 8px;
+    transition: 0.25s ease;
+    transition-property: background-color, opacity;
+
+    &:hover {
+        background: darken($colorPrimary, 5%);
+    }
+    &:active {
+        transition-property: background-color;
+        opacity: 0.8;
+    }
+    svg {
+        height: 18px;
+        width: 18px;
+    }
+
+
+    &.fullWidth {
+        width: 100%;
+    }
+
+
+    @each $variation in $variationsContrast {
+        &.#{$variation} {
+            background: map-get($colorVariations, $variation);
+            color: $colorTextContrast;
+            &:hover {
+                background: darken(map-get($colorVariations, $variation), 15%);
+            }
+        }
+    }
+
+    @each $variation in $variationsNormal {
+        &.#{$variation} {
+            background: map-get($colorVariations, $variation);
+            &:hover {
+                background: darken(map-get($colorVariations, $variation), 5%);
+            }
+        }
+    }
+
+
+    &.big {
+        height: 42px;
+        padding: 0 24px;
+    }
+
+    &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+}

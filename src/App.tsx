@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef } from 'react';
 import { useSize } from 'ahooks';
 import { GDRWebCanvas } from 'gdrweb-react';
 
@@ -15,6 +15,7 @@ import { ModalContext } from '@/context/ModalContext';
 
 import MenuBar from '@/components/MenuBar';
 import ModalsManager from '@/components/ModalsManager';
+import TestControls from '@/components/AppElements/TestControls';
 
 import './App.scss';
 
@@ -69,23 +70,10 @@ const App = () => {
 
                 { contextMenu }
 
-                <div>
-                    <h2>Upload the Level file:</h2>
-                    <input type="file" onChange={(e) => {
-                        const file = e.target.files?.item(0);
-                        if (file) {
-                            const reader = new FileReader();
-                            reader.onload = e => {
-                                if (e.target?.result)
-                                    setLevelString(e.target.result.toString());
-                            };
-                            reader.readAsText(file);
-                        }
-                    }} />
-                    <p>
-                        Pressed keys: {keys.join(' + ')}
-                    </p>
-                </div>
+                <TestControls
+                    keys={keys}
+                    onLevelFileLoad={setLevelString}
+                />
 
             </div>
         </ModalContext.Provider>

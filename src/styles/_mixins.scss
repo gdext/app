@@ -55,3 +55,9 @@
     height: 100%;
     z-index: 100;
 }
+
+@mixin formElemStyleReset {
+    border: none;
+    outline: none;
+    background: none;
+}
